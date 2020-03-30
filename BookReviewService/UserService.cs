@@ -29,21 +29,40 @@ namespace BookReviewService
             }
         }
 
-        public void RegisterUser(User user)
+        public User RegisterUser(User user)
         {
-            using(DatabaseContext databaseContext = new DatabaseContext())
+            User operationFailed = null;
+            try
             {
-                var newUser = new User()
+                using (DatabaseContext databaseContext = new DatabaseContext())
                 {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    UserEmail = user.UserEmail,
-                    UserName = user.UserName,
-                    UserPassword = user.UserPassword
-                };
-                databaseContext.Users.Add(newUser);
-                databaseContext.SaveChanges();
+                    var newUser = new User()
+                    {
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        UserEmail = user.UserEmail,
+                        UserName = user.UserName,
+                        UserPassword = user.UserPassword
+                    };
+                    databaseContext.Users.Add(newUser);
+                    int rows = databaseContext.SaveChanges();
+                    if(rows != 0)
+                    {
+                        return newUser;
+                    }
+                    else
+                    {
+                        return operationFailed;
+                    }
+                }
+
             }
+            catch(Exception)
+            {
+                
+                return operationFailed;
+            }
+           
         }
     }
 }

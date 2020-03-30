@@ -52,11 +52,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookOperationService.cs" />
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="IBookOperationService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="Migrations\202003301513085_Book_User_Tbl.cs" />
     <Compile Include="Migrations\202003301513085_Book_User_Tbl.Designer.cs">
       <DependentUpon>202003301513085_Book_User_Tbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003301736242_Book_User_Tbl_Validations.cs" />
+    <Compile Include="Migrations\202003301736242_Book_User_Tbl_Validations.Designer.cs">
+      <DependentUpon>202003301736242_Book_User_Tbl_Validations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
@@ -71,6 +77,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003301513085_Book_User_Tbl.resx">
       <DependentUpon>202003301513085_Book_User_Tbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003301736242_Book_User_Tbl_Validations.resx">
+      <DependentUpon>202003301736242_Book_User_Tbl_Validations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -13,7 +13,7 @@ namespace BookReviewService
     public interface IUserService
     {
         [OperationContract]
-        void RegisterUser(User user);
+        User RegisterUser(User user);
 
         [OperationContract]
         User LoginUser(string email, string password);

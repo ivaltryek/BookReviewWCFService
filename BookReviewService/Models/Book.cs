@@ -13,13 +13,21 @@ namespace BookReviewService.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [Required]
         public string BookName { get; set; }
+        [Required]
         public string Author { get; set; }
+        [Required]
         public string Category { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string Publisher { get; set; }
-        public string PublishedYear { get; set; }
-        public string OverrallRating { get; set; }
+        [Required]
+        public int PublishedYear { get; set; }
+        [Required]
+        [Range(0,10)]
+        public int OverrallRating { get; set; }
 
 
     }
