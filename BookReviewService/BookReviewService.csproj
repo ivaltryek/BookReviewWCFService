@@ -69,6 +69,10 @@
     <Compile Include="Migrations\202003311410036_Review.Designer.cs">
       <DependentUpon>202003311410036_Review.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004171816424_removedRange.cs" />
+    <Compile Include="Migrations\202004171816424_removedRange.Designer.cs">
+      <DependentUpon>202004171816424_removedRange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Review.cs" />
@@ -90,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003311410036_Review.resx">
       <DependentUpon>202003311410036_Review.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004171816424_removedRange.resx">
+      <DependentUpon>202004171816424_removedRange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

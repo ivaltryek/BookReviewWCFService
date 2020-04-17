@@ -9,6 +9,29 @@ namespace BookReviewService
 {
     class ReviewService : IReviewService
     {
+        public int CountBookReviewScore(string BookName)
+        {
+            int points = 0;
+            int totals = 0;
+            using(DatabaseContext context = new DatabaseContext())
+            {
+                List<Review> reviews = context.Reviews.Where(q => q.ReviewOn == BookName).ToList();
+                foreach(var r in reviews)
+                {
+                    points += r.ReviewScale;
+                    totals += 1;
+                }
+                Book book = context.Books.Where(p => p.BookName == BookName).FirstOrDefault();
+                if(book.OverrallRating != points) 
+                {
+                    book.OverrallRating = points;
+                    context.SaveChanges();
+                }
+
+                return points;
+            }
+        }
+
         public int DeleteReview(string reviewOn, string currentUser)
         {
             try
@@ -35,6 +58,23 @@ namespace BookReviewService
             
         }
 
+        public Review DoesReviewExists(string currentUser, string reviewOn)
+        {
+            Review notFoundAnyExistsOne = null;
+            using(DatabaseContext context = new DatabaseContext())
+            {
+                var review = context.Reviews.Where(w => w.ReviewOn == reviewOn && w.ReviewBy == currentUser).FirstOrDefault();
+                if(review != null)
+                {
+                    return review;
+                }
+                else
+                {
+                    return notFoundAnyExistsOne;
+                }
+            }
+        }
+
         public Review EditReview(string reviewOn, string currentUser, Review review)
         {
             Review operationFailed = null;
@@ -43,9 +83,10 @@ namespace BookReviewService
             {
                 using (DatabaseContext context = new DatabaseContext())
                 {
-                    var reviewRecord = context.Reviews.SingleOrDefault(r => r.ReviewOn == reviewOn && r.ReviewBy == currentUser);
+                    var reviewRecord = context.Reviews.FirstOrDefault(r => r.ReviewOn == reviewOn && r.ReviewBy == currentUser);
                     if(reviewRecord != null)
                     {
+                        reviewRecord.ReviewBy = currentUser;
                         reviewRecord.ReviewScale = review.ReviewScale;
                         reviewRecord.ReviewComment = review.ReviewComment;
                         row  = context.SaveChanges();
@@ -68,10 +109,30 @@ namespace BookReviewService
             }            
         }
 
+        public List<Review> GetBookReviews(string BookName)
+        {
+            List<Review> notFoundAnyReviews = null;
+            try
+            {
+                using(DatabaseContext context  =  new DatabaseContext())
+                {
+                    var reviewList = context.Reviews.Where(r => r.ReviewOn == BookName).ToList();
+                    if(!reviewList.Any())
+                    {
+                        return notFoundAnyReviews;
+                    }
+                    return reviewList;
+                }
+            }
+            catch(Exception)
+            {
+                return notFoundAnyReviews;
+            }
+        }
+
         public List<Review> GetMyReviews(string currentUser)
         {
             List<Review> notFoundAnyList = null;
-            Review r = null;
             try
             {
                 using (DatabaseContext context = new DatabaseContext())

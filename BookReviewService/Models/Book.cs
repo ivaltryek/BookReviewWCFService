@@ -26,7 +26,7 @@ namespace BookReviewService.Models
         [Required]
         public int PublishedYear { get; set; }
         [Required]
-        [Range(0,10)]
+        
         public int OverrallRating { get; set; }
 
 

@@ -17,7 +17,8 @@ namespace BookReviewService
 
         [OperationContract]
         User LoginUser(string email, string password);
-       
+        [OperationContract]
+        bool DoesUserNameExists(string userName);
         // TODO: Add your service operations here
     }
 

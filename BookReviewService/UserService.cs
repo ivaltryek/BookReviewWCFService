@@ -11,6 +11,22 @@ namespace BookReviewService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class UserService : IUserService
     {
+        public bool DoesUserNameExists(string userName)
+        {
+            using (DatabaseContext databaseContext = new DatabaseContext())
+            {
+                User user = databaseContext.Users.Where(u => u.UserName == userName).FirstOrDefault();
+                if(user != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public User LoginUser(string email, string password)
         {
            using(DatabaseContext databaseContext = new DatabaseContext())
