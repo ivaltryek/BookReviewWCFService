@@ -20,6 +20,8 @@ namespace BookReviewService.Models
         [Required]
         public string LastName { get; set; }
         [Required]
+        [MaxLength(100)]
+        [Index(IsUnique = true)]
         public string UserEmail { get; set; }
         [Required]
         public string UserType { get; set; } = "user";

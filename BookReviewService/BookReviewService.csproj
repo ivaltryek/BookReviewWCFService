@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202004171816424_removedRange.Designer.cs">
       <DependentUpon>202004171816424_removedRange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004201212543_addedUhiqueColumn.cs" />
+    <Compile Include="Migrations\202004201212543_addedUhiqueColumn.Designer.cs">
+      <DependentUpon>202004201212543_addedUhiqueColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Review.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004171816424_removedRange.resx">
       <DependentUpon>202004171816424_removedRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004201212543_addedUhiqueColumn.resx">
+      <DependentUpon>202004201212543_addedUhiqueColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
